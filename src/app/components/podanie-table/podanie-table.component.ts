@@ -11,6 +11,7 @@ export class PodanieTableComponent implements OnInit {
 
   podania: Podanie[];
   showSpinner: boolean = true;
+  showBrak: boolean = false;
 
   constructor(private podanieService: PodanieService) { }
 
@@ -25,6 +26,7 @@ export class PodanieTableComponent implements OnInit {
 
   assign(podania):void{
     this.podania = podania;
+    if(this.podania.length == 0) this.showBrak=true;
     this.showSpinner = false;
   }
 }

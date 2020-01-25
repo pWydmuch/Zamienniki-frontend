@@ -86,3 +86,17 @@ pdf-viewer {
     height: 80vh;
     
   }
+
+  .err-inp{
+    border: 2px solid red;
+  border-radius: 4px;
+}
+
+.err-lab{
+    color: red;
+}
+
+.err{
+    color:red;
+    font-size: 15px;
+}

@@ -23,24 +23,26 @@
     </div>
   </div>
   <div class="container card">
-    <form>
+    <form (ngSubmit)="save()" #f="ngForm">
       <div class="form-group my-center">
-        <p>Jaka opinia?</p>
+        <p [class.err-lab]="stErr">Jaka opinia?</p>
         <div class="custom-control custom-radio">
-          <input [(ngModel)]="podanie.status" type="radio" class="custom-control-input" id="poz" value="POZYTYWNA" name="status" required>
+          <input [(ngModel)]="podanie.status" required #st="ngModel" type="radio" class="custom-control-input" id="poz" value="POZYTYWNA" name="status" >
           <label class="custom-control-label" for="poz">Pozytywna</label>
         </div>
         <div class="custom-control custom-radio">
-          <input  [(ngModel)]="podanie.status" type="radio" class="custom-control-input" id="neg" name="status" value="NEGATYWNA" checked>
+          <input  [(ngModel)]="podanie.status" required #st="ngModel" type="radio" class="custom-control-input" id="neg" value="NEGATYWNA" name="status" >
           <label class="custom-control-label" for="neg">Negatywna</label>
         </div>
       </div>
+      <p  class="err" *ngIf="stErr">Musisz określić status opinii</p>
       <div class="form-group">
-        <label class="lbl-my" for="txa">Uzasadnienie opini:</label>
-        <textarea   [(ngModel)]="podanie.uzasadnienieOpinii" name="uzasadnienie" class="form-control" id="txa" rows="3" required></textarea>
+        <label class="lbl-my" [class.err-lab]="(f.submitted || tar.touched) && tar.invalid" for="txa">Uzasadnienie opini:</label>
+        <textarea #tar="ngModel"  [class.err-lab]="(f.submitted || tar.touched) && tar.invalid" [(ngModel)]="podanie.uzasadnienieOpinii" name="uzasadnienie" class="form-control" id="txa" rows="3" required></textarea>
+        <p  class="err" *ngIf="(f.submitted || tar.touched) && tar.invalid">Uzasanienie nie może być puste</p>
       </div>
       <div class="text-center">
-        <input (click)="save()" type="submit" class="btn my-cl" value="zatwierdz"/>
+        <input type="submit" class="btn my-cl" value="zatwierdz"/>
       </div>
     </form>
   </div>

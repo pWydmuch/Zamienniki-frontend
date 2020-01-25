@@ -9,6 +9,7 @@ export  class Kurs{
     stopienStudiow: string;
     wydzial: string;
     jezykStudiow: string;
+    czyGrupa: boolean;
     formaZajec: string [];
     formaZaliczenia: string;
     ects: number;

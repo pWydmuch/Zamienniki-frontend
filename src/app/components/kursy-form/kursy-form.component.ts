@@ -19,6 +19,10 @@ export class KursyFormComponent implements OnInit {
   cykleKsztalcenia: string[];
   kierunki: string[];
 
+  negEcts: boolean = false;
+  decimalErr: boolean = false;
+  overNumber: boolean = false;
+
   kursData: Kurs = {trybStudiow: 'Stacjonarne', stopienStudiow:'Pierwszy', formaZaliczenia:'Egzamin' };
   // kursData.trybStudiow = ;
 
@@ -38,9 +42,29 @@ export class KursyFormComponent implements OnInit {
     .subscribe(kierunki => this.kierunki=kierunki);
   }
 
- 
+  checkNumber(){
+    console.log(this.kursData.ects);
+  
+    if(this.kursData.ects<0) this.negEcts =true;
+    if(this.kursData.ects>=0) this.negEcts =false;
+    if(this.kursData.ects>30) this.overNumber =true;
+    if(this.kursData.ects<=30) this.overNumber =false;
+    if(Number.isInteger(this.kursData.ects)) this.decimalErr =false;
+    if(!Number.isInteger(this.kursData.ects)) this.decimalErr =true;
+    if(this.kursData.ects==null){
+       this.decimalErr =false;
+       delete this.kursData.ects;
+      }
+  }
+
+  isError(): boolean{
+    return this.overNumber || this.negEcts || this.decimalErr;
+  }
+
   send(){
+    if (!this.isError())
     this.router.navigateByUrl('/wyszukiwanie/wyniki', { state: this.kursData });
+    
   }
 
 }

@@ -11,7 +11,9 @@ import { Podanie } from 'src/app/model/Podanie';
 })
 export class PodanieDetailComponent implements OnInit {
 
-  podanie: Podanie;
+  podanie: Podanie = {status: 'NEGATYWNA'};
+ 
+  stErr: boolean = false;
  
   constructor(
     private route: ActivatedRoute,
@@ -34,13 +36,18 @@ export class PodanieDetailComponent implements OnInit {
   }
 
   save():void{
-    console.log(this.podanie);
-    if(this.podanie.uzasadnienieOpinii==null){
+    console.log(this.podanie.status);
+    console.log(this.stErr);
+    if(this.podanie.status=="NIEROZPATRZONE"){
+        this.stErr = true;
+    }
+    else{
+      this.stErr = false;
+    }
+    if(!this.podanie.uzasadnienieOpinii || this.stErr){
 
     }
-    else if(this.podanie.status=="NIEROZPATRZONE"){
-
-    }
+   
     else{
     this.podanieService.updatePodanie(this.podanie)
     .subscribe(()=>this.goBack());

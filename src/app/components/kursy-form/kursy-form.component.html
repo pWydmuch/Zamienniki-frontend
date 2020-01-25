@@ -1,6 +1,6 @@
 <h2>Wyszukaj kursy</h2>
 <div  class="py-20 container card">
-  <form >
+  <form name="form" #f="ngForm" (ngSubmit)="f.form.valid && send()" >
     <div class="form-group">
       <p>Tryb studiów<span>*</span></p>
       <div class="custom-control custom-radio">
@@ -34,7 +34,7 @@
         </select>
     </div>
 
-    <div class="form-group">
+    <div class="form-group has-success">
         <label for="cykl">Cykl kształcenia</label>
         <select [(ngModel)]="kursData.cyklKsztalcenia"  class="form-control" id="cykl" name="cyklKsztalcenia" required>
           <option *ngFor="let cykl of cykleKsztalcenia" name="cyklKsz" [value]="cykl">{{cykl}}</option>
@@ -49,8 +49,11 @@
     </div>
 
     <div class="form-group">
-        <label for="ects">Ile punktów ECTS</label>
-        <input [(ngModel)]="kursData.ects"  class="form-control" name="ECTS" type="number" id="ects" min="0" max="30">
+        <label [class.err-lab]="negEcts || decimalErr || overNumber" for="ects">Ile punktów ECTS (co najmniej)</label>
+        <input (blur)="checkNumber()"  [class.err-inp]="negEcts || decimalErr || overNumber" [(ngModel)]="kursData.ects" #ectsy="ngModel"  class="form-control" name="ECTS" type="number" id="ects" min="0" max="30">
+          <p class="err" *ngIf="negEcts">Punkty ECTS nie mogą być liczbą ujemną</p>
+          <p class="err" *ngIf="decimalErr">Punkty ECTS muszą być liczbą całkowitą</p>
+          <p class="err" *ngIf="overNumber">Punkty ECTS nie mogą przekraczać 30</p>
     </div>
 
     <div class="form-group">

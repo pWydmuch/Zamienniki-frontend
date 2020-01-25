@@ -1,3 +1,5 @@
+<div *ngIf="podania && podania.length > 0">
+
 <h2>Podania</h2>
 
 <app-spinner *ngIf="showSpinner"></app-spinner>
@@ -24,5 +26,8 @@
       </tr>
     </tbody>
   </table>
+</div>
+
+<h2 *ngIf="showBrak">Aktualnie brak podań.</h2>
 
   <!-- <ng-template id="empty" #empty >Nie ma żadnych podań</ng-template> -->
