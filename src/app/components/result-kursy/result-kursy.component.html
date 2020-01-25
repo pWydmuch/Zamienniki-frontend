@@ -1,0 +1,40 @@
+
+
+<button (click)="goBack()"   class="btn my-cl back">Wróć</button>
+<div *ngIf="kursy && kursy.length > 0">
+
+
+<h2>Wyniki wyszukiwania</h2>
+
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Kod kursu</th>
+      <th scope="col">Nazwa kursu</th>
+      <th scope="col">Wydzial</th>
+      <th scope="col">Kierunek</th>
+      <th scope="col">Cykl ksztalcenia</th>
+      <th scope="col">Język</th>
+      <th scope="col">ECTS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let kurs of kursy;let i =index" routerLink="/wyszukiwanie/wyniki/{{kurs.id}}">
+      <th scope="row">{{i+1}}</th>
+      <td>{{kurs.kod}}</td>
+      <td>{{kurs.nazwa | titlecase}}</td>
+      <td>{{kurs.wydzial}}</td>
+      <td>{{kurs.kierunek | titlecase}}</td> 
+      <!-- kierunku na razie nie ma -->
+      <td>{{kurs.cyklKsztalcenia}}</td> 
+      <td>{{kurs.jezykStudiow}}</td> 
+      <td>{{kurs.ects}}</td> 
+    </tr>
+  </tbody>
+</table>
+</div>
+<h2 *ngIf="showBrak">Brak kursów spełniających zadane kryteria.</h2>
+<app-spinner *ngIf="showSpinner"></app-spinner>

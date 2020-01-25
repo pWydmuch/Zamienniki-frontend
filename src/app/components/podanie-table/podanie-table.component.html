@@ -1,0 +1,28 @@
+<h2>Podania</h2>
+
+<app-spinner *ngIf="showSpinner"></app-spinner>
+
+<table *ngIf="podania && podania.length" class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Kod zamiennika</th>
+        <th scope="col">Kod kursu zamienianego</th>
+        <th scope="col">Imię studenta</th>
+        <th scope="col">Nazwisko studenta</th>
+        <th scope="col">Nr indeksu</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr  *ngFor="let podanie of podania;let i =index" routerLink="/opiniowanie/{{podanie.id}}" >
+        <th scope="row">{{podanie.id}}</th>
+        <td>{{podanie.zamiennik.kod}}</td> 
+        <td>{{podanie.zamieniany.kod}}</td>  
+        <td>{{podanie.student.imie}}</td>
+        <td>{{podanie.student.nazwisko}}</td>
+        <td>{{podanie.student.nr_index}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- <ng-template id="empty" #empty >Nie ma żadnych podań</ng-template> -->

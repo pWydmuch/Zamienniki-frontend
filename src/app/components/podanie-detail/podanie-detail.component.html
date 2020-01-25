@@ -1,0 +1,47 @@
+<div *ngIf="podanie">
+    <button (click)="goBack()"   class="btn my-cl back">Wróć</button>
+  <h2>Podanie</h2>
+  
+  <div class="dane">
+    <div class="dane-pers">
+      <p>Imię i nazwisko studenta:<span> {{podanie.student.imie}} {{podanie.student.nazwisko}}</span> </p>
+      <p>Numer indeksu:<span> {{podanie.student.nr_index}} </span> </p>
+      <p>Uzasadnienie podania:<span> {{podanie.uzasadnieniePodania}} </span> </p>
+    </div>
+    <div class="dane-pod">
+      <p>Id podania:<span> {{podanie.id}}</span> </p>
+    </div>
+  </div>
+  <div class="karty">
+    <div class="kart-item">
+      <p>Karta zamiennika</p>
+      <pdf-viewer [original-size]="false" src="{{podanie.zamiennik.linkKarty}}"></pdf-viewer>
+    </div>
+    <div class="kart-item">
+      <p>Karta kursu zamienianego</p>
+      <pdf-viewer [original-size]="false" src="{{podanie.zamieniany.linkKarty}}"></pdf-viewer>
+    </div>
+  </div>
+  <div class="container card">
+    <form>
+      <div class="form-group my-center">
+        <p>Jaka opinia?</p>
+        <div class="custom-control custom-radio">
+          <input [(ngModel)]="podanie.status" type="radio" class="custom-control-input" id="poz" value="POZYTYWNA" name="status" required>
+          <label class="custom-control-label" for="poz">Pozytywna</label>
+        </div>
+        <div class="custom-control custom-radio">
+          <input  [(ngModel)]="podanie.status" type="radio" class="custom-control-input" id="neg" name="status" value="NEGATYWNA" checked>
+          <label class="custom-control-label" for="neg">Negatywna</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="lbl-my" for="txa">Uzasadnienie opini:</label>
+        <textarea   [(ngModel)]="podanie.uzasadnienieOpinii" name="uzasadnienie" class="form-control" id="txa" rows="3" required></textarea>
+      </div>
+      <div class="text-center">
+        <input (click)="save()" type="submit" class="btn my-cl" value="zatwierdz"/>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,66 @@
+<h2>Wyszukaj kursy</h2>
+<div  class="py-20 container card">
+  <form >
+    <div class="form-group">
+      <p>Tryb studiów<span>*</span></p>
+      <div class="custom-control custom-radio">
+        <input [(ngModel)]="kursData.trybStudiow" type="radio" class="custom-control-input" id="stacjonarne" value="Stacjonarne" name="trybStudiow">
+        <label class="custom-control-label" for="stacjonarne">Stacjonarne</label>
+      </div>
+      <div class="custom-control custom-radio">
+        <input [(ngModel)]="kursData.trybStudiow" type="radio" class="custom-control-input" id="niestacjonarne" value="Niestacjonarne" name="trybStudiow"  checked>
+        <label class="custom-control-label" for="niestacjonarne">Niestacjonarne</label>
+      </div>
+    </div>
+
+    <div class="form-group">
+        <label for="stopnie">Stopień studiów<span>*</span></label>
+        <select [(ngModel)]="kursData.stopienStudiow" class="form-control" id="stopnie" name="stopienStudiow">
+          <option *ngFor="let stopien of stopnie" name="stopienStudiow" [value]="stopien">{{stopien}}</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="wydzial">Wydział</label>
+        <select [(ngModel)]="kursData.wydzial" class="form-control" id="wydzial" name="wydzial" required>
+          <option *ngFor="let wydzial of wydzialy" name="WydzialUczelnii" [value]="wydzial">{{wydzial}}</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="kierunek">Kierunek</label>
+        <select [(ngModel)]="kursData.kierunek" class="form-control" id="kierunek" name="kierunekU" required>
+          <option *ngFor="let kierunek of kierunki" name="kierunekUcz" [value]="kierunek">{{kierunek | titlecase}}</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="cykl">Cykl kształcenia</label>
+        <select [(ngModel)]="kursData.cyklKsztalcenia"  class="form-control" id="cykl" name="cyklKsztalcenia" required>
+          <option *ngFor="let cykl of cykleKsztalcenia" name="cyklKsz" [value]="cykl">{{cykl}}</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="forZal">Forma zaliczenia<span>*</span></label>
+        <select [(ngModel)]="kursData.formaZaliczenia"  class="form-control" id="forZal" name="formaZaliczenia" required>
+          <option *ngFor="let forma of formyZaliczenia" name="formZal" [value]="forma">{{forma}}</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="ects">Ile punktów ECTS</label>
+        <input [(ngModel)]="kursData.ects"  class="form-control" name="ECTS" type="number" id="ects" min="0" max="30">
+    </div>
+
+    <div class="form-group">
+        <label for="forZaj">Forma zajęć</label>
+        <select [(ngModel)]="kursData.formaZajec"  class="form-control" id="forZaj" name="formaZajec" multiple>
+          <option *ngFor="let forma of formyZajec" name="formZaj" [value]="forma">{{forma | titlecase}}</option>
+        </select>
+    </div>
+      <div class="text-center">
+    <button (click)="send()" type="submit" class="btn my-cl">Szukaj</button>
+  </div>
+  </form>
+</div>
