@@ -51,12 +51,13 @@ export class KursService {
     );
   }
   findKursy(kurs: Kurs): Observable<any> {
+    let kr:any = kurs;
     console.log(kurs);
     // this.addParams(kurs);
     // console.log(this.params);
     return this.http.get(`${this.basicUrl}/kursy`,
      {
-        params: kurs
+        params: kr
     }).pipe(
       tap(_ => console.log(`find kursy`)),
       // catchError(this.handleError<any>(`updateHero`))

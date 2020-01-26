@@ -7,9 +7,9 @@
 <table *ngIf="podania && podania.length" class="table">
     <thead>
       <tr>
-        <th scope="col">#</th>
-        <th scope="col">Kod zamiennika</th>
+        <th scope="col">#id</th>
         <th scope="col">Kod kursu zamienianego</th>
+        <th scope="col">Kody zamienników</th>
         <th scope="col">Imię studenta</th>
         <th scope="col">Nazwisko studenta</th>
         <th scope="col">Nr indeksu</th>
@@ -18,8 +18,8 @@
     <tbody>
       <tr  *ngFor="let podanie of podania;let i =index" routerLink="/opiniowanie/{{podanie.id}}" >
         <th scope="row">{{podanie.id}}</th>
-        <td>{{podanie.zamiennik.kod}}</td> 
         <td>{{podanie.zamieniany.kod}}</td>  
+        <td><p *ngFor="let zamiennik of podanie.zamienniki">{{zamiennik.kod}}</p></td> 
         <td>{{podanie.student.imie}}</td>
         <td>{{podanie.student.nazwisko}}</td>
         <td>{{podanie.student.nr_index}}</td>

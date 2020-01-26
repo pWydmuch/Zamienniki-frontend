@@ -14,7 +14,8 @@ import { PodanieTableComponent } from './components/podanie-table/podanie-table.
 import { PodanieDetailComponent } from './components/podanie-detail/podanie-detail.component';
 import { KursDetailComponent } from './components/kurs-detail/kurs-detail.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
-import { TranslatePipe } from './translate.pipe';
+import { TranslatePipe } from './pipes/translate.pipe';
+import { KodTransPipe } from './pipes/kod-trans.pipe';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { TranslatePipe } from './translate.pipe';
     PodanieDetailComponent,
     KursDetailComponent,
     SpinnerComponent,
-    TranslatePipe
+    TranslatePipe,
+    KodTransPipe
   ],
   imports: [
     FormsModule,

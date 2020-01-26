@@ -11,10 +11,12 @@ import { Podanie } from 'src/app/model/Podanie';
 })
 export class PodanieDetailComponent implements OnInit {
 
-  podanie: Podanie = {status: 'NEGATYWNA'};
+  podanie: Podanie ;
+  // = {status: 'NEGATYWNA'};
  
   stErr: boolean = false;
- 
+  ind: number = 0;
+
   constructor(
     private route: ActivatedRoute,
     private podanieService: PodanieService,
@@ -24,6 +26,10 @@ export class PodanieDetailComponent implements OnInit {
   ngOnInit() {
     this.getPodanie(); 
 
+  }
+
+  changeIndex(i:number){
+    this.ind = i;
   }
 
   getPodanie(): void {

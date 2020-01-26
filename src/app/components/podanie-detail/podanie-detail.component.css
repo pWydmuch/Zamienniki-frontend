@@ -100,3 +100,17 @@ pdf-viewer {
     color:red;
     font-size: 15px;
 }
+
+li{
+    border: 1px grey solid;
+}
+
+li:first-of-type {
+    margin-left: 300px;
+}
+
+ .clicked{
+     border: #9c2e1d solid 2px;
+     color: #9c2e1d;
+     font-weight: 600;
+ }   

@@ -1,7 +1,7 @@
 <div *ngIf="podanie">
-    <button (click)="goBack()"   class="btn my-cl back">Wróć</button>
+  <button (click)="goBack()" class="btn my-cl back">Wróć</button>
   <h2>Podanie</h2>
-  
+
   <div class="dane">
     <div class="dane-pers">
       <p>Imię i nazwisko studenta:<span> {{podanie.student.imie}} {{podanie.student.nazwisko}}</span> </p>
@@ -14,35 +14,49 @@
   </div>
   <div class="karty">
     <div class="kart-item">
-      <p>Karta zamiennika</p>
-      <pdf-viewer [original-size]="false" src="{{podanie.zamiennik.linkKarty}}"></pdf-viewer>
-    </div>
-    <div class="kart-item">
       <p>Karta kursu zamienianego</p>
+
       <pdf-viewer [original-size]="false" src="{{podanie.zamieniany.linkKarty}}"></pdf-viewer>
     </div>
+    <div class="kart-item">
+      <p>Karta zamiennika</p>
+      <div *ngIf="podanie.zamienniki.length>1">
+        <ul class="pagination text-center">
+
+          <li class="page-item" *ngFor="let podanie of podanie.zamienniki; index as i" [class.clicked]="ind==i"><a
+              class="page-link" (click)="changeIndex(i)">{{i +1}}</a></li>
+        </ul>
+      </div>
+      <pdf-viewer [original-size]="false" src="{{podanie.zamienniki[ind].linkKarty}}"></pdf-viewer>
+    </div>
+
   </div>
   <div class="container card">
     <form (ngSubmit)="save()" #f="ngForm">
       <div class="form-group my-center">
         <p [class.err-lab]="stErr">Jaka opinia?</p>
         <div class="custom-control custom-radio">
-          <input [(ngModel)]="podanie.status" required #st="ngModel" type="radio" class="custom-control-input" id="poz" value="POZYTYWNA" name="status" >
+          <input [(ngModel)]="podanie.status" required #st="ngModel" type="radio" class="custom-control-input" id="poz"
+            value="POZYTYWNA" name="status">
           <label class="custom-control-label" for="poz">Pozytywna</label>
         </div>
         <div class="custom-control custom-radio">
-          <input  [(ngModel)]="podanie.status" required #st="ngModel" type="radio" class="custom-control-input" id="neg" value="NEGATYWNA" name="status" >
+          <input [(ngModel)]="podanie.status" required #st="ngModel" type="radio" class="custom-control-input" id="neg"
+            value="NEGATYWNA" name="status">
           <label class="custom-control-label" for="neg">Negatywna</label>
         </div>
       </div>
-      <p  class="err" *ngIf="stErr">Musisz określić status opinii</p>
+      <p class="err" *ngIf="stErr">Musisz określić status opinii</p>
       <div class="form-group">
-        <label class="lbl-my" [class.err-lab]="(f.submitted || tar.touched) && tar.invalid" for="txa">Uzasadnienie opini:</label>
-        <textarea #tar="ngModel"  [class.err-lab]="(f.submitted || tar.touched) && tar.invalid" [(ngModel)]="podanie.uzasadnienieOpinii" name="uzasadnienie" class="form-control" id="txa" rows="3" required></textarea>
-        <p  class="err" *ngIf="(f.submitted || tar.touched) && tar.invalid">Uzasanienie nie może być puste</p>
+        <label class="lbl-my" [class.err-lab]="(f.submitted || tar.touched) && tar.invalid" for="txa">Uzasadnienie
+          opini:</label>
+        <textarea #tar="ngModel" [class.err-lab]="(f.submitted || tar.touched) && tar.invalid"
+          [(ngModel)]="podanie.uzasadnienieOpinii" name="uzasadnienie" class="form-control" id="txa" rows="3"
+          required></textarea>
+        <p class="err" *ngIf="(f.submitted || tar.touched) && tar.invalid">Uzasadnienie nie może być puste</p>
       </div>
       <div class="text-center">
-        <input type="submit" class="btn my-cl" value="zatwierdz"/>
+        <input type="submit" class="btn my-cl" value="zatwierdz" />
       </div>
     </form>
   </div>

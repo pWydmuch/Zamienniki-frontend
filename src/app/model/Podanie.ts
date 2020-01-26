@@ -3,7 +3,7 @@ import { Student } from './Student';
 
 export  class Podanie{
     id: number;
-    zamiennik: Kurs;
+    zamienniki: Kurs[];
     zamieniany: Kurs;
     uzasadnieniePodania: string;
     uzasadnienieOpinii: string;
