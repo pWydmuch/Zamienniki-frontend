@@ -3,6 +3,7 @@ import { Kurs } from '../models/Kurs';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http'; 
 import { catchError, map, tap } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -10,7 +11,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 })
 export class KursService {
 
-  private basicUrl = 'https://zamienniki.herokuapp.com';
+  private basicUrl = environment.basicUrl;
   private params : {};
 
   httpOptions = {
@@ -35,26 +36,10 @@ export class KursService {
     );
   }
 
-  getCykle(): Observable<string[]>{
-    return this.http.get<string[]>(`${this.basicUrl}/cykle`)
-    .pipe(
-      tap(_ => console.log('fetched cykle'))
-      // catchError(this.handleError<Hero[]>('getHeroes', [])
-    );
-  }
 
-  getKierunki(): Observable<string[]>{
-    return this.http.get<string[]>(`${this.basicUrl}/kierunki`)
-    .pipe(
-      tap(_ => console.log('fetched kierunki'))
-      // catchError(this.handleError<Hero[]>('getHeroes', [])
-    );
-  }
   findKursy(kurs: Kurs): Observable<any> {
     let kr:any = kurs;
     console.log(kurs);
-    // this.addParams(kurs);
-    // console.log(this.params);
     return this.http.get(`${this.basicUrl}/kursy`,
      {
         params: kr

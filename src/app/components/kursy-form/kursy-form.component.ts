@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { KursService } from 'src/app/services/kurs.service';
 import { Router } from '@angular/router';
 import { Kurs } from 'src/app/models/Kurs';
+import { PlanStudiowService } from 'src/app/services/plan-studiow-service.service';
 
 @Component({
   selector: 'app-kursy-form',
@@ -26,7 +27,9 @@ export class KursyFormComponent implements OnInit {
   kursData: Kurs = {trybStudiow: 'Stacjonarne', stopienStudiow:'Pierwszy', formaZaliczenia:'Egzamin' };
   // kursData.trybStudiow = ;
 
-  constructor(private kursService: KursService, private router: Router ) { }
+  constructor(private kursService: KursService,
+    private planService: PlanStudiowService,
+    private router: Router ) { }
 
   ngOnInit() {
     this.getCykle();
@@ -34,11 +37,11 @@ export class KursyFormComponent implements OnInit {
   }
 
   getCykle(): void {
-    this.kursService.getCykle()
+    this.planService.getCykle()
     .subscribe(cykle => this.cykleKsztalcenia=cykle);
   }
   getKierunki(): void {
-    this.kursService.getKierunki()
+    this.planService.getKierunki()
     .subscribe(kierunki => this.kierunki=kierunki);
   }
 

@@ -1,5 +1,6 @@
 import { Kurs } from './Kurs';
 import { Student } from './Student';
+import { Opiniujacy } from './Opiniujacy';
 
 export  class Podanie{
     id: number;
@@ -9,4 +10,5 @@ export  class Podanie{
     uzasadnienieOpinii: string;
     student: Student;
     status: string;
+    opiniujacy: Opiniujacy;
 }

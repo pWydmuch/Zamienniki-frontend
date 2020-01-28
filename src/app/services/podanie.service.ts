@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http'; 
 import { catchError, map, tap } from 'rxjs/operators';
 import { Podanie } from '../models/Podanie';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -11,7 +12,8 @@ import { Podanie } from '../models/Podanie';
 })
 export class PodanieService {
 
-  private podaniaUrl = 'https://zamienniki.herokuapp.com/podania';
+  
+  private podaniaUrl =`${environment.basicUrl}/podania`;
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })

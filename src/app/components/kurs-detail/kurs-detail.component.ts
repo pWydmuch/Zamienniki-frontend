@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { KursService } from 'src/app/services/kurs.service';
 import { Kurs } from 'src/app/models/Kurs';
 import { Location } from '@angular/common';
@@ -13,11 +13,13 @@ import { Location } from '@angular/common';
 export class KursDetailComponent implements OnInit {
 
   kurs: Kurs;
+  kursData: Kurs;
 
   constructor(
     private route: ActivatedRoute,
     private kursService: KursService,
-    private location: Location
+    private location: Location,
+    private router: Router 
   ) { }
 
   ngOnInit() {
@@ -26,12 +28,15 @@ export class KursDetailComponent implements OnInit {
   }
 
   getKurs(): void {
+    delete history.state.navigationId;
+    this.kursData = history.state;
     const id = +this.route.snapshot.paramMap.get('id');
     this.kursService.getKurs(id)
     .subscribe(kurs => this.kurs=kurs);
   }
   goBack():void{
-    this.location.back();
+    // this.location.back();
+    this.router.navigateByUrl(`/wyszukiwanie/wyniki`, { state: this.kursData  });
   }
 
 }

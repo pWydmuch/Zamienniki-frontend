@@ -3,6 +3,7 @@ import { PodanieService } from 'src/app/services/podanie.service';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Podanie } from 'src/app/models/Podanie';
+import { Opiniujacy } from 'src/app/models/Opiniujacy';
 
 @Component({
   selector: 'app-podanie-detail',
@@ -16,6 +17,10 @@ export class PodanieDetailComponent implements OnInit {
  
   stErr: boolean = false;
   ind: number = 0;
+
+  opiniujacy: Opiniujacy = {
+    id: 1, imie: 'Jan', nazwisko: 'Nowak', tytulNaukowy: 'DR'
+  };
 
   constructor(
     private route: ActivatedRoute,
@@ -55,6 +60,7 @@ export class PodanieDetailComponent implements OnInit {
     }
    
     else{
+      this.podanie.opiniujacy=this.opiniujacy;
     this.podanieService.updatePodanie(this.podanie)
     .subscribe(()=>this.goBack());
     }

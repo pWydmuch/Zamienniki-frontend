@@ -23,7 +23,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let kurs of kursy;let i =index" routerLink="/wyszukiwanie/wyniki/{{kurs.id}}">
+    <tr *ngFor="let kurs of kursy;let i =index" routerLink="/wyszukiwanie/wyniki/{{kurs.id}}" (click)="showDetails(kurs.id)">
       <th scope="row">{{i+1}}</th>
       <td>{{kurs.kod}}</td>
       <td>{{kurs.nazwa | titlecase}}</td>
