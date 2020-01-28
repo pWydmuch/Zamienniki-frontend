@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PodanieService } from 'src/app/services/podanie.service';
-import { Podanie } from 'src/app/model/Podanie';
+import { Podanie } from 'src/app/models/Podanie';
 
 @Component({
   selector: 'app-podanie-table',

@@ -1,8 +1,10 @@
+<app-spinner *ngIf="showSpinner"></app-spinner>
+
 <div *ngIf="podania && podania.length > 0">
 
 <h2>Podania</h2>
 
-<app-spinner *ngIf="showSpinner"></app-spinner>
+
 
 <table *ngIf="podania && podania.length" class="table">
     <thead>

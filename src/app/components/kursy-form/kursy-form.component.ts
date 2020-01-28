@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { KursService } from 'src/app/services/kurs.service';
 import { Router } from '@angular/router';
-import { Kurs } from 'src/app/model/Kurs';
+import { Kurs } from 'src/app/models/Kurs';
 
 @Component({
   selector: 'app-kursy-form',

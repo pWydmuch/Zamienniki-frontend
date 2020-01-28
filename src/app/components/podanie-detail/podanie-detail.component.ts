@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PodanieService } from 'src/app/services/podanie.service';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { Podanie } from 'src/app/model/Podanie';
+import { Podanie } from 'src/app/models/Podanie';
 
 @Component({
   selector: 'app-podanie-detail',

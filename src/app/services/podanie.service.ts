@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Kurs } from '../model/Kurs';
+import { Kurs } from '../models/Kurs';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http'; 
 import { catchError, map, tap } from 'rxjs/operators';
-import { Podanie } from '../model/Podanie';
+import { Podanie } from '../models/Podanie';
 
 
 @Injectable({
@@ -11,7 +11,7 @@ import { Podanie } from '../model/Podanie';
 })
 export class PodanieService {
 
-  private podaniaUrl = 'http://localhost:8080/podania';
+  private podaniaUrl = 'https://zamienniki.herokuapp.com/podania';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Kurs } from '../model/Kurs';
+import { Kurs } from '../models/Kurs';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http'; 
 import { catchError, map, tap } from 'rxjs/operators';
@@ -10,7 +10,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 })
 export class KursService {
 
-  private basicUrl = 'http://localhost:8080';
+  private basicUrl = 'https://zamienniki.herokuapp.com';
   private params : {};
 
   httpOptions = {

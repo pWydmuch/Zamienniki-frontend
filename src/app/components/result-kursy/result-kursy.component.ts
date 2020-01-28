@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Kurs } from 'src/app/model/Kurs';
+import { Kurs } from 'src/app/models/Kurs';
 import { KursService } from 'src/app/services/kurs.service';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
