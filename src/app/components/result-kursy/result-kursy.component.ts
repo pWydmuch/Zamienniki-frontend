@@ -33,7 +33,8 @@ export class ResultKursyComponent implements OnInit {
   }
 
   goBack():void{
-    this.location.back();
+    // this.location.back();
+    this.router.navigateByUrl('/wyszukiwanie');
   }
 
   showDetails(id){
