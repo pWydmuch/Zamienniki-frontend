@@ -3,6 +3,7 @@ import { KursService } from 'src/app/services/kurs.service';
 import { Router } from '@angular/router';
 import { Kurs } from 'src/app/models/Kurs';
 import { PlanStudiowService } from 'src/app/services/plan-studiow-service.service';
+import { PlanInfo } from 'src/app/models/PlanInfo';
 
 @Component({
   selector: 'app-kursy-form',
@@ -32,18 +33,24 @@ export class KursyFormComponent implements OnInit {
     private router: Router ) { }
 
   ngOnInit() {
-    this.getCykle();
-    this.getKierunki();
+    this.getPlanInfo();
+    
   }
 
-  getCykle(): void {
-    this.planService.getCykle()
-    .subscribe(cykle => this.cykleKsztalcenia=cykle);
+  getPlanInfo(): void {
+    this.planService.getPlanInfo()
+    .subscribe(planInfo =>this.setKierunkiAndCykle(planInfo) );
   }
-  getKierunki(): void {
-    this.planService.getKierunki()
-    .subscribe(kierunki => this.kierunki=kierunki);
+
+  setKierunkiAndCykle( planInfo : PlanInfo){
+    this.kierunki =planInfo.kierunki;
+    this.cykleKsztalcenia = planInfo.cykle;
   }
+
+  // getKierunki(): void {
+  //   this.planService.getKierunki()
+  //   .subscribe(kierunki => this.kierunki=kierunki);
+  // }
 
   checkNumber(){
     console.log(this.kursData.ects);
