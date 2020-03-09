@@ -16,7 +16,7 @@
     <div class="kart-item">
       <p>Karta kursu zamienianego</p>
 
-      <pdf-viewer [original-size]="false" src="{{podanie.zamieniany.linkKarty}}"></pdf-viewer>
+      <pdf-viewer [original-size]="false" [src]="podanie.zamieniany.linkKarty"></pdf-viewer>
     </div>
     <div class="kart-item">
       <p>Karta zamiennika</p>
@@ -27,7 +27,7 @@
               class="page-link" (click)="changeIndex(i)">{{i +1}}</a></li>
         </ul>
       </div>
-      <pdf-viewer [original-size]="false" src="{{podanie.zamienniki[ind].linkKarty}}"></pdf-viewer>
+      <pdf-viewer [original-size]="false" [src]="podanie.zamienniki[ind].linkKarty"></pdf-viewer>
     </div>
 
   </div>

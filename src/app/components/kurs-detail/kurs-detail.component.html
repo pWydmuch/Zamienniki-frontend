@@ -1,5 +1,5 @@
 <div *ngIf="kurs">
   <button (click)="goBack()" class="btn my-cl back">Wróć</button>
   <h2>{{kurs.nazwa}}</h2>
-  <pdf-viewer [original-size]="false" src="{{kurs.linkKarty}}"></pdf-viewer>
+  <pdf-viewer [original-size]="false" [src]="kurs.linkKarty"></pdf-viewer>
 </div>
